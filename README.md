@@ -1,27 +1,108 @@
 # VisitReady – Doctor Visit Prep Assistant
 
-A simple, privacy-friendly web app (Healthcare domain · Website Development) that helps patients get ready for a GP visit.
+VisitReady is a simple, privacy-friendly healthcare web application that helps users prepare important information before a doctor visit.
 
-## Problem
-GP appointments are short. Patients often forget symptom details, medicines, or what to ask, so visits are less effective.
+##  Live Demo
 
-## What it does
-- Collects symptoms, duration, severity, medicines, allergies and conditions
-- Generates a clean, doctor-ready summary (copy or print / save as PDF)
-- Suggests relevant questions to ask the doctor
-- Shows a checklist of what to bring
-- Flags red-flag answers (e.g. chest pain, breathlessness, severity 9+) with an urgent-care warning
+https://ishujagtap2005-wq.github.io/visitready/
 
-## Tech
-Plain HTML + CSS + JavaScript, single file, no backend, no data uploaded. Built with AI assistance (Claude) – see `PROMPTS.md`.
+##  Problem
 
-## Run
-Open `index.html` in any browser.
+Doctor appointments can be short, and patients may forget important symptom details, medicines, allergies, existing conditions, or questions they want to ask.
 
-## Host free (GitHub Pages)
-1. Create a GitHub repo, upload `index.html`, `README.md`, `PROMPTS.md`
-2. Settings → Pages → Branch: `main` / root → Save
-3. Share the generated link
+VisitReady helps organise this information before the appointment.
 
-## Disclaimer
-Information tool only. Not medical advice or diagnosis.
+##  Solution
+
+VisitReady allows users to enter their health concerns and generates a structured doctor-visit summary that can be copied, printed, or saved as a PDF.
+
+The application is designed as a visit-preparation tool and does not provide medical diagnosis.
+
+##  Features
+
+- Enter symptoms and main health concerns
+- Add symptom duration
+- Select symptom severity
+- Add current medicines
+- Add allergies
+- Add existing health conditions
+- Generate a structured doctor-ready summary
+- Suggest useful questions to ask the doctor
+- Display a checklist of things to bring
+- Show urgent-care warnings for selected red-flag symptoms
+- Copy generated summary
+- Print or save the summary as PDF
+- Responsive and easy-to-use interface
+
+##  AI-Assisted Development
+
+Claude (Anthropic) was used as the primary AI assistant during the development of VisitReady.
+
+AI assistance was used for:
+
+- Understanding the assessment requirements
+- Selecting and structuring the project idea
+- Supporting implementation
+- Organising features and user flow
+- Improving the overall project structure
+- Considering healthcare safety and usability
+
+For detailed prompt documentation, see:
+
+[PROMPTS.md](./PROMPTS.md)
+
+##  Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- GitHub
+- GitHub Pages
+- Claude (AI development assistance)
+
+The application runs entirely in the browser and does not require a backend.
+
+##  Privacy
+
+VisitReady does not upload the entered information to a server.
+
+The application works directly in the user's browser.
+
+##  Safety
+
+VisitReady is an information and visit-preparation tool only.
+
+It does not diagnose medical conditions and is not a replacement for professional medical advice.
+
+Urgent-care warnings are included for selected red-flag responses.
+
+## How to Run
+
+1. Download or clone this repository.
+2. Open `index.html` in a web browser.
+
+No additional installation is required.
+
+##  Project Files
+
+- `index.html` – Main VisitReady application
+- `README.md` – Project information and instructions
+- `PROMPTS.md` – AI prompt documentation
+
+##  Project Links
+
+**Live Application:**  
+https://ishujagtap2005-wq.github.io/visitready/
+
+**GitHub Repository:**  
+https://github.com/ishujagtap2005-wq/visitready
+
+##  Final Outcome
+
+VisitReady demonstrates how AI-assisted development can be used to turn a healthcare problem into a practical and functional web application.
+
+The final application helps users organise important information before a doctor visit while maintaining a simple, privacy-focused and user-friendly experience.
+
+---
+
+**Developed for the AI Growth & Automation Associate – AI Skills & Prompt Engineering Assessment.**
