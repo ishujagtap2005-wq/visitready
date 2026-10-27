@@ -105,6 +105,15 @@ const QUESTIONS={
 
 $("f").addEventListener("submit",e=>{
   e.preventDefault();
+
+  const mainConcern = $("symptom").value.trim();
+
+  if (!mainConcern) {
+    alert("Please enter your main concern or symptoms before generating the summary.");
+    $("symptom").focus();
+    return;
+  }
+
   const sx=[...box.querySelectorAll("input:checked")].map(c=>c.value);
   const d={
     name:$("name").value.trim(),age:$("age").value,main:$("symptom").value.trim(),
