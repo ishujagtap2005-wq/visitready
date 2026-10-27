@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VisitReady – Doctor Visit Prep Assistant</title>
+<style>
+  :root{--teal:#0f766e;--bg:#f0fdfa;--ink:#0f172a;--mute:#475569;--card:#fff;--red:#b91c1c}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  header{background:var(--teal);color:#fff;padding:24px 16px;text-align:center}
+  header h1{margin:0;font-size:1.8rem}
+  header p{margin:6px 0 0;opacity:.9}
+  main{max-width:820px;margin:0 auto;padding:16px;display:grid;gap:16px}
+  .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  label{display:block;font-weight:600;margin:14px 0 4px}
+  input[type=text],input[type=number],select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font:inherit}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px}
+  .checks label{font-weight:400;margin:0;display:flex;gap:8px;align-items:center}
+  button{background:var(--teal);color:#fff;border:0;padding:12px 20px;border-radius:8px;font-size:1rem;cursor:pointer;margin-top:18px;margin-right:8px}
+  button.alt{background:#fff;color:var(--teal);border:1px solid var(--teal)}
+  .alert{background:#fee2e2;border-left:5px solid var(--red);color:var(--red);padding:12px;border-radius:8px;font-weight:600}
+  .hide{display:none}
+  pre{white-space:pre-wrap;font-family:inherit;background:#f8fafc;padding:14px;border-radius:8px;border:1px solid #e2e8f0}
+  ul{padding-left:20px}
+  .note{font-size:.85rem;color:var(--mute)}
+  @media(max-width:600px){.row{grid-template-columns:1fr}}
+  @media print{header,#form,.actions,.note{display:none}body{background:#fff}.card{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🩺 VisitReady</h1>
+  <p>Prepare for your doctor visit in 2 minutes</p>
+</header>
+<main>
+  <section class="card" id="form">
+    <form id="f">
+      <div class="row">
+        <div><label for="name">Name (optional)</label><input type="text" id="name"></div>
+        <div><label for="age">Age</label><input type="number" id="age" min="0" max="120"></div>
+      </div>
+      <label for="symptom">Main problem / symptom *</label>
+      <input type="text" id="symptom" required placeholder="e.g. headache, cough, stomach pain">
+      <div class="row">
+        <div>
+          <label for="duration">Since when?</label>
+          <select id="duration">
+            <option>Less than 1 day</option><option>1–3 days</option><option>4–7 days</option>
+            <option>1–4 weeks</option><option>More than 1 month</option>
+          </select>
+        </div>
+        <div>
+          <label for="sev">Severity: <span id="sevv">5</span>/10</label>
+          <input type="range" id="sev" min="1" max="10" value="5">
+        </div>
+      </div>
+      <label>Other symptoms</label>
+      <div class="checks" id="others"></div>
+      <label for="meds">Current medicines</label>
+      <textarea id="meds" rows="2" placeholder="Name and dose, if known"></textarea>
+      <div class="row">
+        <div><label for="allergy">Allergies</label><input type="text" id="allergy"></div>
+        <div><label for="cond">Existing conditions</label><input type="text" id="cond" placeholder="e.g. diabetes, BP"></div>
+      </div>
+      <button type="submit">Generate my visit summary</button>
+    </form>
+  </section>
+
+  <section class="card hide" id="out">
+    <div id="alert" class="alert hide"></div>
+    <h2>Summary to show your doctor</h2>
+    <pre id="summary"></pre>
+    <h2>Questions you can ask</h2>
+    <ul id="qs"></ul>
+    <h2>Bring with you</h2>
+    <ul id="bring"></ul>
+    <div class="actions">
+      <button id="copy">Copy summary</button>
+      <button class="alt" onclick="window.print()">Print / Save PDF</button>
+      <button class="alt" id="back">Edit details</button>
+    </div>
+  </section>
+  <p class="note">⚠️ VisitReady is an information tool only. It does not diagnose or replace medical advice. In an emergency, call your local emergency number immediately. Your data stays in your browser and is never uploaded.</p>
+</main>
+
+<script>
+const OTHERS=["Fever","Cough","Fatigue","Nausea / vomiting","Dizziness","Chest pain","Shortness of breath","Rash","Loss of appetite","Sleep problems","Body ache","Sore throat"];
+const RED=["Chest pain","Shortness of breath"];
+const box=document.getElementById("others");
+OTHERS.forEach(o=>{box.insertAdjacentHTML("beforeend",`<label><input type="checkbox" value="${o}"> ${o}</label>`)});
+const $=id=>document.getElementById(id);
+$("sev").oninput=()=>$("sevv").textContent=$("sev").value;
+
+const QUESTIONS={
+  base:["What could be causing my symptoms?","Do I need any tests (blood test, scan, etc.)?","What should I do at home, and what should I avoid?","Which warning signs mean I should come back or go to emergency?","When should I follow up?"],
+  Fever:["How long can I safely wait before the fever needs treatment?"],
+  Cough:["Is this infection, allergy or something else?"],
+  "Nausea / vomiting":["What can I eat or drink safely right now?"],
+  "Sleep problems":["Could stress or my medicines be affecting my sleep?"],
+  Fatigue:["Should I check iron, thyroid or vitamin levels?"],
+  Rash:["Is it contagious? Should I avoid any products or foods?"]
+};
+
+$("f").addEventListener("submit",e=>{
+  e.preventDefault();
+  const sx=[...box.querySelectorAll("input:checked")].map(c=>c.value);
+  const d={
+    name:$("name").value.trim(),age:$("age").value,main:$("symptom").value.trim(),
+    dur:$("duration").value,sev:+$("sev").value,sx,
+    meds:$("meds").value.trim()||"None reported",allergy:$("allergy").value.trim()||"None reported",
+    cond:$("cond").value.trim()||"None reported"
+  };
+  const date=new Date().toLocaleDateString();
+  $("summary").textContent=
+`Date: ${date}
+Patient: ${d.name||"—"}${d.age?`, ${d.age} years`:""}
+
+Main complaint: ${d.main}
+Duration: ${d.dur}
+Severity: ${d.sev}/10
+Other symptoms: ${sx.length?sx.join(", "):"None reported"}
+
+Current medicines: ${d.meds}
+Allergies: ${d.allergy}
+Existing conditions: ${d.cond}`;
+
+  const qs=[...QUESTIONS.base];
+  sx.forEach(s=>QUESTIONS[s]&&qs.push(...QUESTIONS[s]));
+  if(d.meds!=="None reported")qs.push("Is it safe to continue my current medicines with this problem?");
+  $("qs").innerHTML=qs.map(q=>`<li>${q}</li>`).join("");
+
+  const bring=["Photo ID and any insurance / health card","Previous reports, prescriptions or scans","List of all medicines (including supplements)"];
+  if(d.cond!=="None reported")bring.push("Recent readings (e.g. sugar, blood pressure)");
+  $("bring").innerHTML=bring.map(b=>`<li>${b}</li>`).join("");
+
+  const flags=sx.filter(s=>RED.includes(s));
+  const al=$("alert");
+  if(flags.length||d.sev>=9){
+    al.textContent="⚠️ Some of your answers (" + (flags.join(", ")||"very high severity") + ") can be serious. Please seek urgent medical care or call emergency services instead of waiting for a routine appointment.";
+    al.classList.remove("hide");
+  } else al.classList.add("hide");
+
+  $("form").classList.add("hide");$("out").classList.remove("hide");
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+$("back").onclick=()=>{$("out").classList.add("hide");$("form").classList.remove("hide")};
+$("copy").onclick=async()=>{
+  const txt=$("summary").textContent+"\n\nQuestions:\n"+[...$("qs").children].map(l=>"- "+l.textContent).join("\n");
+  try{await navigator.clipboard.writeText(txt);$("copy").textContent="Copied ✓"}catch{alert("Copy failed – please select the text manually.")}
+};
+</script>
+</body>
+</html>
