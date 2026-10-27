@@ -1,41 +1,120 @@
 # Prompt Documentation – VisitReady
 
-**AI tool used:** Claude (Anthropic) – chosen for strong code generation, long-context understanding of the assessment brief, and ability to create and edit files directly.
+## AI Tool Used
 
-## Prompt 1 – Initial prompt (actual)
-I pasted the full assessment brief (Task 1: AI Skills & Prompt Engineering Assessment, Gokul Infocare) and wrote:
+**Claude (Anthropic)**
+
+I used Claude as the main AI tool to help me understand the assessment requirements, select a suitable project idea, generate the initial implementation, and structure the project for submission.
+
+---
+
+## Prompt 1 – Initial Project Request
+
+I provided Claude with the complete **Task 1: AI Skills & Prompt Engineering Assessment** brief from Gokul Infocare and asked:
 
 > "Mala ha simple project banvun de, hyat jas sangitaly tas."
-> (Build me a simple project for this, as described in the brief.)
 
-**Why this worked:** giving the complete brief as context let the AI pick a suitable domain (Healthcare), choose one area (Website Development), keep scope simple, and prepare all 3 submission items.
+**Meaning:** Build me a simple project according to the requirements given in this assessment.
 
-**Result:** VisitReady, a single-file web app plus README and this document.
+### Why I Used This Prompt
 
----
+Instead of describing only a project idea, I provided the complete assessment brief as context. This allowed the AI to understand important requirements such as:
 
-## Follow-up prompts (add YOUR real ones here)
-Replace the examples below with the exact prompts you actually use when refining. Evaluators want to see your genuine iterations.
+- Healthcare or Technology domain
+- Functional web application
+- Meaningful use of AI
+- Simple but practical solution
+- Project documentation and submission requirements
 
-### Prompt 2 – Refinement (example template)
-> "Add a severity slider and a red-flag warning when the user selects chest pain or shortness of breath."
+### Result
 
-**Why:** safety – the app should never encourage waiting when symptoms may be serious.
+Based on the assessment requirements, the **VisitReady** healthcare web application was developed.
 
-### Prompt 3 – UX / mobile (example template)
-> "Make the layout mobile-friendly and add a Print / Save as PDF button that hides the form."
-
-### Prompt 4 – Content quality (example template)
-> "Add condition-specific questions for fever, cough, rash and fatigue, and a 'what to bring' checklist."
-
-### Prompt 5 – Debugging (example template)
-> "The copy button does nothing on Safari. Add a fallback and explain the cause."
+VisitReady helps a user prepare information before a doctor visit by organising symptoms and other relevant details into a clear visit summary.
 
 ---
 
-## Prompt-engineering approach (for your video)
-1. **Context first:** gave the full brief instead of a one-line idea.
-2. **Constraints:** simple, single-file, no backend, privacy-friendly.
-3. **Safety by design:** disclaimer plus red-flag logic for a healthcare app.
-4. **Iterate in small steps:** one feature per follow-up prompt, test, then refine.
-5. **Verify:** test the output in a browser, then fix issues through targeted prompts.
+## AI-Assisted Development
+
+After the initial request, Claude helped structure the project into a simple browser-based healthcare application.
+
+During development, the project was kept:
+
+- Simple and easy to demonstrate
+- Browser based
+- Mobile friendly
+- Privacy focused
+- Easy to host using GitHub Pages
+- Suitable for the healthcare domain
+
+The final application includes features such as:
+
+- Symptom information
+- Symptom duration
+- Severity selection
+- Medicines and allergies
+- Existing health conditions
+- Doctor-visit summary generation
+- Suggested questions for the visit
+- What-to-bring checklist
+- Red-flag warning
+- Copy summary option
+- Print / Save as PDF option
+
+---
+
+## Prompt Engineering Approach
+
+My main approach was to give the AI enough context before asking it to build the solution.
+
+### 1. Context First
+
+I provided the complete assessment brief so that the AI could understand the purpose of the task instead of working from an isolated coding request.
+
+### 2. Clear Scope
+
+I requested a **simple project**, which helped keep the application practical and manageable while still satisfying the assessment requirements.
+
+### 3. Healthcare Safety
+
+The application was designed as a visit-preparation tool rather than a diagnosis system.
+
+A disclaimer and red-flag warning were included so that the application does not present itself as a replacement for professional medical advice.
+
+### 4. Practical User Experience
+
+The application was designed to collect useful information and convert it into an organised summary that a user can take to a healthcare visit.
+
+### 5. Testing and Verification
+
+After generating the project, I tested the application in the browser and checked the main functionality and user flow before publishing it.
+
+---
+
+## Challenges and Problem Solving
+
+One important challenge was keeping the project useful without making medical diagnoses.
+
+To address this, the application focuses on organising information for a doctor visit rather than predicting or diagnosing a medical condition.
+
+Another consideration was making the project easy for the assessment team to review. Therefore, the application was created as a lightweight web application that can run directly in a browser and can be hosted publicly through GitHub Pages.
+
+---
+
+## Final Outcome
+
+The final result is **VisitReady – Doctor Visit Preparation Assistant**, a functional healthcare web application.
+
+**Live Application:**  
+https://ishujagtap2005-wq.github.io/visitready/
+
+**GitHub Repository:**  
+https://github.com/ishujagtap2005-wq/visitready
+
+The project demonstrates how an AI tool can be used to understand requirements, generate and structure a practical solution, assist with implementation, and improve the overall development workflow.
+
+---
+
+## Note
+
+This document records the AI-assisted development approach used for the VisitReady project. The initial prompt above is reproduced from the actual project-development interaction.
