@@ -2,23 +2,23 @@
 
 VisitReady is a simple, privacy-friendly healthcare web application that helps users prepare important information before a doctor visit.
 
-##  Live Demo
+## 🌐 Live Demo
 
 https://ishujagtap2005-wq.github.io/visitready/
 
-##  Problem
+## 🎯 Problem
 
 Doctor appointments can be short, and patients may forget important symptom details, medicines, allergies, existing conditions, or questions they want to ask.
 
 VisitReady helps organise this information before the appointment.
 
-##  Solution
+## 💡 Solution
 
 VisitReady allows users to enter their health concerns and generates a structured doctor-visit summary that can be copied, printed, or saved as a PDF.
 
 The application is designed as a visit-preparation tool and does not provide medical diagnosis.
 
-##  Features
+## ✨ Features
 
 - Enter symptoms and main health concerns
 - Add symptom duration
@@ -34,7 +34,7 @@ The application is designed as a visit-preparation tool and does not provide med
 - Print or save the summary as PDF
 - Responsive and easy-to-use interface
 
-##  AI-Assisted Development
+## 🤖 AI-Assisted Development
 
 Claude (Anthropic) was used as the primary AI assistant during the development of VisitReady.
 
@@ -51,7 +51,7 @@ For detailed prompt documentation, see:
 
 [PROMPTS.md](./PROMPTS.md)
 
-##  Technologies Used
+## 🛠️ Technologies Used
 
 - HTML
 - CSS
@@ -62,13 +62,11 @@ For detailed prompt documentation, see:
 
 The application runs entirely in the browser and does not require a backend.
 
-##  Privacy
+## 🔒 Privacy
 
-VisitReady does not upload the entered information to a server.
+VisitReady does not upload the entered information to a server. The application works directly in the user's browser.
 
-The application works directly in the user's browser.
-
-##  Safety
+## ⚕️ Safety
 
 VisitReady is an information and visit-preparation tool only.
 
@@ -76,20 +74,20 @@ It does not diagnose medical conditions and is not a replacement for professiona
 
 Urgent-care warnings are included for selected red-flag responses.
 
-## How to Run
+## ▶️ How to Run
 
 1. Download or clone this repository.
 2. Open `index.html` in a web browser.
 
 No additional installation is required.
 
-##  Project Files
+## 📂 Project Files
 
 - `index.html` – Main VisitReady application
 - `README.md` – Project information and instructions
 - `PROMPTS.md` – AI prompt documentation
 
-##  Project Links
+## 🔗 Project Links
 
 **Live Application:**  
 https://ishujagtap2005-wq.github.io/visitready/
@@ -97,7 +95,7 @@ https://ishujagtap2005-wq.github.io/visitready/
 **GitHub Repository:**  
 https://github.com/ishujagtap2005-wq/visitready
 
-##  Final Outcome
+## 📌 Final Outcome
 
 VisitReady demonstrates how AI-assisted development can be used to turn a healthcare problem into a practical and functional web application.
 
